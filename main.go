@@ -24,6 +24,7 @@ func main() {
 		return
 	}
 
+
 	fmt.Println("your requested cuorse data: ", *dataPointer)
 
 }

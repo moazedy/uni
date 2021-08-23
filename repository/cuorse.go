@@ -6,8 +6,8 @@ import (
 	"uni/sql"
 )
 
-// CuorseDbInterface is an interface to cuorse in repo to intract with upper layers
-type CuorseDbInterface interface {
+// CuorseRepoInterface is an interface to cuorse in repo to intract with upper layers
+type CuorseRepoInterface interface {
 	WriteNewCuorse(cuorseData dataModels.Cuorse) (*string, error)
 	ReadCuorse(cuorseId string) (*dataModels.Cuorse, error)
 }
@@ -18,14 +18,15 @@ type cuorse struct {
 	session sql.Data
 }
 
-// NewCuorseesDbInterface is a constructor func to create an instance instance for using upper layers in case
-func NewCuorsesDbInterface() CuorseDbInterface {
+// NewCuorseesRepoInterface is a constructor func to create an instance instance for using upper layers in case
+func NewCuorsesRepoInterface() CuorseRepoInterface {
 	// creating an instance of interface
-	var cInterface CuorseDbInterface
+	var cInterface CuorseRepoInterface
 
 	// creating an instance from cuorse
 	c1 := &cuorse{
 		session: sql.RealData,
+		// session: sql.NewData()
 	}
 
 	// telling the c1 to conform the interface

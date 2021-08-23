@@ -18,7 +18,7 @@ type CuorseInterfaceUtils interface {
 
 // cuorse is a struct to hold interface methods and connect to lower layers
 type cuorse struct {
-	repo repository.CuorseDbInterface
+	repo repository.CuorseRepoInterface
 }
 
 // NewCuorseInterface is constructory func for creating an instance of CuorseInterface
@@ -26,7 +26,7 @@ func NewCuorseInterfaceUtils() CuorseInterfaceUtils {
 	var CuorseInterface CuorseInterfaceUtils
 
 	c := &cuorse{
-		repo: repository.NewCuorsesDbInterface(),
+		repo: repository.NewCuorsesRepoInterface(),
 	}
 
 	CuorseInterface = c

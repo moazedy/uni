@@ -4,9 +4,9 @@ import "errors"
 
 // Cuorse is a struct to demonstration of cuorse concept in system
 type Cuorse struct {
-	Id    string
-	Name  string
-	Grade int
+	Id    string `json:"id"`
+	Name  string `json:"name"`
+	Grade int    `json:"grade"`
 }
 
 // Validate validates target cuorse data
@@ -48,4 +48,8 @@ func (c *Cuorse) GradeValidation() error {
 	}
 
 	return nil
+}
+
+type CreateCuorseRequest struct {
+	Name string `json:"name"`
 }

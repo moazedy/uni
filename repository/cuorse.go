@@ -10,6 +10,7 @@ import (
 type CuorseRepoInterface interface {
 	WriteNewCuorse(cuorseData dataModels.Cuorse) (*string, error)
 	ReadCuorse(cuorseId string) (*dataModels.Cuorse, error)
+	GetCuorsesList(count int) ([]dataModels.Cuorse, error)
 }
 
 // cuorse is a struct to hold interface methods and intract to lower layers
@@ -51,4 +52,24 @@ func (c *cuorse) ReadCuorse(cuorseId string) (*dataModels.Cuorse, error) {
 	}
 
 	return &val, nil
+}
+
+func (c *cuorse) GetCuorsesList(count int) ([]dataModels.Cuorse, error) {
+	if count > len(c.session.Cuorses) {
+		return nil, errors.New("count is too much !")
+	}
+
+	var cuorses []dataModels.Cuorse
+
+	index := 0
+	for _, v := range c.session.Cuorses {
+		if index < count {
+			cuorses = append(cuorses, v)
+			index++
+		} else {
+			break
+		}
+	}
+
+	return cuorses, nil
 }

@@ -10,6 +10,7 @@ func Run(port string) {
 
 	en.POST("/cuorse/create", cControllerInterface.CreateCuorse)
 	en.GET("/cuorse/get/:cuorse_id", cControllerInterface.GetCuorseData)
+	en.GET("/course/list/:count", cControllerInterface.GetCuorseList)
 
 	en.Run(port)
 }

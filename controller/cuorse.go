@@ -11,6 +11,7 @@ import (
 type CuorseController interface {
 	CreateCuorse(ctx *gin.Context)
 	GetCuorseData(ctx *gin.Context)
+	GetCuorseList(ctx *gin.Context)
 }
 
 type cuorse struct {
@@ -59,4 +60,16 @@ func (c *cuorse) GetCuorseData(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, *cData)
+}
+
+func (c *cuorse) GetCuorseList(ctx *gin.Context) {
+	count := ctx.Param("count")
+
+	cuorses, err := c.cuorseUtil.GetCuorseList(count)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	ctx.JSON(http.StatusOK, cuorses)
 }
